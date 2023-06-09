@@ -55,6 +55,9 @@ type Options struct {
 	// StatusFunc is used be the API to retrieve the AlertStatus of an
 	// alert. Mandatory.
 	StatusFunc func(model.Fingerprint) types.AlertStatus
+	// Callback is used before the API return the response back. If nil, no
+	// action will be taken.
+	APILimitConfig config.APILimitConfig
 	// Peer from the gossip cluster. If nil, no clustering will be used.
 	Peer cluster.ClusterPeer
 	// Timeout for all HTTP connections. The zero value (and negative
@@ -124,6 +127,7 @@ func New(opts Options) (*API, error) {
 		opts.GroupFunc,
 		opts.StatusFunc,
 		opts.Silences,
+		opts.APILimitConfig,
 		opts.Peer,
 		log.With(l, "version", "v2"),
 		opts.Registry,

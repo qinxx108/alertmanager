@@ -256,9 +256,8 @@ func (api *API) getAlertsHandler(params alert_ops.GetAlertsParams) middleware.Re
 	now := time.Now()
 
 	api.mtx.RLock()
-	alertCount := 0
 	for a := range alerts.Next() {
-		if api.apiLimit != nil && api.apiLimit.MaxAlertsCount > 0 && api.apiLimit.MaxAlertsCount <= alertCount {
+		if api.apiLimit != nil && api.apiLimit.MaxAlertsCount > 0 && api.apiLimit.MaxAlertsCount <= len(res) {
 			break
 		}
 
@@ -286,7 +285,6 @@ func (api *API) getAlertsHandler(params alert_ops.GetAlertsParams) middleware.Re
 		alert := AlertToOpenAPIAlert(a, api.getAlertStatus(a.Fingerprint()), receivers)
 
 		res = append(res, alert)
-		alertCount++
 	}
 	api.mtx.RUnlock()
 

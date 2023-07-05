@@ -22,8 +22,6 @@ import (
 	"sync"
 	"time"
 
-	alertgroupinfolist_ops "github.com/prometheus/alertmanager/api/v2/restapi/operations/alertgroupinfolist"
-	"github.com/prometheus/alertmanager/util/callback"
 	"github.com/go-kit/log"
 	"github.com/go-kit/log/level"
 	"github.com/go-openapi/analysis"
@@ -34,6 +32,9 @@ import (
 	prometheus_model "github.com/prometheus/common/model"
 	"github.com/prometheus/common/version"
 	"github.com/rs/cors"
+
+	alertgroupinfolist_ops "github.com/prometheus/alertmanager/api/v2/restapi/operations/alertgroupinfolist"
+	"github.com/prometheus/alertmanager/util/callback"
 
 	"github.com/prometheus/alertmanager/api/metrics"
 	open_api_models "github.com/prometheus/alertmanager/api/v2/models"
@@ -56,14 +57,14 @@ import (
 
 // API represents an Alertmanager API v2
 type API struct {
-	peer           cluster.ClusterPeer
-	silences       *silence.Silences
-	alerts         provider.Alerts
-	alertGroups    groupsFn
+	peer            cluster.ClusterPeer
+	silences        *silence.Silences
+	alerts          provider.Alerts
+	alertGroups     groupsFn
 	alertGroupInfos groupInfosFn
-	getAlertStatus getAlertStatusFn
-	apiCallback    callback.Callback
-	uptime         time.Time
+	getAlertStatus  getAlertStatusFn
+	apiCallback     callback.Callback
+	uptime          time.Time
 
 	// mtx protects alertmanagerConfig, setAlertStatus and route.
 	mtx sync.RWMutex

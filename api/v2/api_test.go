@@ -24,10 +24,10 @@ import (
 	"testing"
 	"time"
 
-	alertgroupinfolist_ops "github.com/prometheus/alertmanager/api/v2/restapi/operations/alertgroupinfolist"
-	"github.com/prometheus/alertmanager/dispatch"
 	alert_ops "github.com/prometheus/alertmanager/api/v2/restapi/operations/alert"
 	alertgroup_ops "github.com/prometheus/alertmanager/api/v2/restapi/operations/alertgroup"
+	alertgroupinfolist_ops "github.com/prometheus/alertmanager/api/v2/restapi/operations/alertgroupinfolist"
+	"github.com/prometheus/alertmanager/dispatch"
 	"github.com/prometheus/alertmanager/util/callback"
 
 	"github.com/go-openapi/runtime"

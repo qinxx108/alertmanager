@@ -463,9 +463,13 @@ func init() {
       "type": "object",
       "required": [
         "labels",
-        "receiver"
+        "receiver",
+        "id"
       ],
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "labels": {
           "$ref": "#/definitions/labelSet"
         },
@@ -1355,9 +1359,13 @@ func init() {
       "type": "object",
       "required": [
         "labels",
-        "receiver"
+        "receiver",
+        "id"
       ],
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "labels": {
           "$ref": "#/definitions/labelSet"
         },
